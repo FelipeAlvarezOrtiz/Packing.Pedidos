@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Packing.Pedidos.Core;
+using Packing.Pedidos.Core.Pedidos;
 using Packing.Pedidos.Core.Productos;
 
 namespace Packing.Pedidos.Data;
@@ -31,4 +32,8 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Formato> Formatos { get; set; }
     public DbSet<Grupo> Grupos { get; set; }
     public DbSet<Presentacion> Presentaciones { get; set; }
+
+    public DbSet<DetallePedido> DetallesPedido { get; set; }
+    public DbSet<Pedido> Pedidos { get; set; }
+    public DbSet<EstadoPedido> EstadosPedidos { get; set; }
 }

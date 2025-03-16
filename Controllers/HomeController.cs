@@ -5,6 +5,7 @@ using Packing.Pedidos.Models;
 
 namespace Packing.Pedidos.Controllers;
 
+[Authorize]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;

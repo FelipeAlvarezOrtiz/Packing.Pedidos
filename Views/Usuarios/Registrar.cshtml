@@ -1,0 +1,148 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Packing.Pedidos.Models.Usuarios.UsuarioCreatoDto
+
+<div class="container-fluid py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+                    <h3 class="card-title text-center mb-4">Crear Usuario</h3>
+                    <form method="post" asp-action="Create">
+                        <div class="mb-3">
+                            <label class="form-label">Nombres</label>
+                            <input asp-for="Nombres" class="form-control" required />
+                            <span asp-validation-for="Nombres" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col">
+                                <label class="form-label">RUT</label>
+                                <input asp-for="Rut" class="form-control" required />
+                                <span asp-validation-for="Rut" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Correo Electrónico</label>
+                            <input asp-for="Email" type="email" class="form-control" required />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Teléfono</label>
+                            <input asp-for="NumeroTelefonico" class="form-control" required />
+                            <span asp-validation-for="NumeroTelefonico" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Cargo</label>
+                            <input asp-for="Cargo" class="form-control" required />
+                            <span asp-validation-for="Cargo" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Empresa</label>
+                            <select asp-for="EmpresaId" asp-items="ViewBag.Empresas" class="form-select" required>
+                                <option value="">Selecciona una Empresa</option>
+                            </select>
+                            <span asp-validation-for="EmpresaId" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Roles</label>
+                            <select asp-for="RoleId" asp-items="ViewBag.Roles" class="form-select" required>
+                                <option value="">Asigne un rol</option>
+                            </select>
+                            <span asp-validation-for="RoleId" class="text-danger"></span>
+                        </div>
+                        <div class="form-check form-switch mb-3">
+                            <input asp-for="Activo" class="form-check-input" type="checkbox" checked />
+                            <label class="form-check-label">Activo</label>
+                        </div>
+                        <div class="text-center">
+                            <button id="submitBtn" type="submit" class="btn btn-primary px-4" disabled>Crear Usuario</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript" asp-append-version="true">
+            document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+            const nombres = document.querySelector("input[name='Nombres']");
+            const rut = document.querySelector("input[name='Rut']");
+            const email = document.querySelector("input[name='Email']");
+            const telefono = document.querySelector("input[name='NumeroTelefonico']");
+            const cargo = document.querySelector("input[name='Cargo']");
+            const empresa = document.querySelector("select[name='EmpresaId']");
+            const rol = document.querySelector("select[name='RoleId']");
+            const submitBtn = document.querySelector("#submitBtn");
+            const inputs = form.querySelectorAll("input, select");
+            
+            function validarCampo(campo, mensaje, regex = null) {
+                const errorSpan = campo.nextElementSibling;
+                if (!campo.value.trim()) {
+                    errorSpan.textContent = mensaje;
+                    campo.classList.add("is-invalid");
+                } else if (regex && !regex.test(campo.value)) {
+                    errorSpan.textContent = mensaje;
+                    campo.classList.add("is-invalid");
+                } else {
+                    errorSpan.textContent = "";
+                    campo.classList.remove("is-invalid");
+                }
+            }
+
+            nombres.oninput = () => validarCampo(nombres, "El nombre es obligatorio.");
+            email.oninput = () => validarCampo(email, "El correo electrónico no es válido.", /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/);
+            telefono.oninput = () => validarCampo(telefono, "El teléfono debe ser un número válido.", /^\d{9,15}$/);
+            cargo.oninput = () => validarCampo(cargo, "El cargo es obligatorio.");
+            empresa.onchange = () => validarCampo(empresa, "Debe seleccionar una empresa.");
+            rol.onchange = () => validarCampo(rol, "Debe asignar un rol.");
+
+            function validarFormulario() {
+                let valido = true;
+                inputs.forEach(input => {
+                    if (input.type !== "checkbox" && (!input.value.trim() || input.classList.contains("is-invalid"))) {
+                        valido = false;
+                    }
+                });
+                submitBtn.disabled = !valido;
+            }
+        
+            inputs.forEach(input => {
+                input.addEventListener("input", validarFormulario);
+                input.addEventListener("change", validarFormulario);
+            });
+        
+            form.onsubmit = function (event) {
+                validarFormulario();
+                if (submitBtn.disabled) {
+                    submitBtn.disabled = false;
+                    event.preventDefault();
+                }
+            };
+
+            rut.addEventListener("input", function () {
+                this.value = formatearRut(this.value);
+            });
+
+
+                rut.addEventListener("blur", function () {
+                    const errorSpan = rut.nextElementSibling;
+                    if (!validarRut(rut.value)) {
+                        errorSpan.textContent = "El RUT ingresado no es válido.";
+                        rut.classList.add("is-invalid");
+                    } else {
+                        errorSpan.textContent = "";
+                        rut.classList.remove("is-invalid");
+                    }
+                });
+        });
+    </script>
+}

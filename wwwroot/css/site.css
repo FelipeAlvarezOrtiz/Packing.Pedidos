@@ -19,10 +19,6 @@ html {
   min-height: 100%;
 }
 
-body {
-  margin-bottom: 60px;
-}
-
 ::after,
 ::before {
     box-sizing: border-box;

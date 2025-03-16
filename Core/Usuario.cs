@@ -15,5 +15,6 @@ namespace Packing.Pedidos.Core
         public required string Cargo { get; set; }
         public int EmpresaId { get; set; }
         public Empresa Empresa { get; set; }
+        public bool PrimerLogin { get; set; }
     }
 }

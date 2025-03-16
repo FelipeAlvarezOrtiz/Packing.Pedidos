@@ -14,7 +14,7 @@ namespace Packing.Pedidos.Models.Usuarios
         [MaxLength(175)]
         public required string Cargo { get; set; }
         public int EmpresaId { get; set; }
-        public Guid RoleId { get; set; }
+        public string RoleId { get; set; }
         public string NumeroTelefonico { get; set; }
     }
 }

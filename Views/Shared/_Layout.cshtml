@@ -106,9 +106,33 @@
                         </div>
                     </div>
                 </nav>
-                <main role="main" class="mt-2 pb-3">
+                <main role="main" class="px-3 mt-2 pb-3">
                     @RenderBody()
                 </main>
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row text-body-secondary">
+                            <div class="col-6 text-start ">
+                                <a class="text-body-secondary" href="https://www.neonexus.cl">
+                                    Desarrollado por <strong>NeoNexus</strong>
+                                </a>
+                            </div>
+                            <div class="col-6 text-end text-body-secondary d-none d-md-block">
+                                <ul class="list-inline mb-0">
+                                   @*  <li class="list-inline-item">
+                                        <a class="text-body-secondary" href="#">Contact</a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="text-body-secondary" href="#">About Us</a>
+                                    </li> *@
+                                    <li class="list-inline-item">
+                                        <a class="text-body-secondary">&copy; 2025 Los Colonos Ltda. - Todos los derechos reservados.</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
             </div>
         </div>
         <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
@@ -131,16 +155,16 @@
                 </div>
             </div>
         </div>
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="~/js/site.js" asp-append-version="true" defer></script>
-        <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-        @await RenderSectionAsync("Scripts", required: false)
     }
     else
     {
         @RenderBody()
     }
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true" defer></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

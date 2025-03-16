@@ -2,44 +2,48 @@
 
 <div class="container-fluid py-5">
     <h2 class="align-content-start mb-4">Lista de Usuarios</h2>
-    <hr/>
+    <hr />
     <div class="card shadow-sm rounded p-3">
         <table id="usuariosTable" class="table table-striped table-bordered" style="width:100%">
-            <thead class="table-dark">
-                <tr>
-                    <th>Nombre</th>
-                    <th>RUT</th>
-                    <th>Email</th>
-                    <th>Teléfono</th>
-                    <th>Empresa</th>
-                    <th>Rol</th>
-                    <th>Activo</th>
-                    <th>Acciones</th>
-                </tr>
+            <thead class="table-info">
+            <tr>
+                <th>Nombre</th>
+                <th>RUT</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Empresa</th>
+                <th>Rol</th>
+                <th>Activo</th>
+                <th>Acciones</th>
+            </tr>
             </thead>
             <tbody>
-                @foreach (var usuario in Model)
-                {
-                    <tr>
-                        <td>@usuario.Nombres</td>
-                        <td>@usuario.Rut-@usuario.Dv</td>
-                        <td>@usuario.Email</td>
-                        <td>@usuario.NumeroTelefonico</td>
-                        <td>@usuario.Empresa</td>
-                        <td>@usuario.RoleId</td>
-                        <td>
-                            <span class="badge @(usuario.Activo ? "bg-success" : "bg-danger")">
-                                @(usuario.Activo ? "Sí" : "No")
-                            </span>
-                        </td>
-                        <td>
-                            @* <a href="@Url.Action("Edit", "Usuarios", new { id = usuario.Id })" class="btn btn-warning btn-sm">Editar</a>
+            @foreach (var usuario in Model)
+            {
+                <tr>
+                    <td>@usuario.Nombres</td>
+                    <td>@usuario.Rut-@usuario.Dv</td>
+                    <td>@usuario.Email</td>
+                    <td>@usuario.NumeroTelefonico</td>
+                    <td>@usuario.Empresa</td>
+                    <td>@usuario.RoleId</td>
+                    <td>
+                        <span class="badge @(usuario.Activo ? "bg-success" : "bg-danger")">
+                            @(usuario.Activo ? "Sí" : "No")
+                        </span>
+                    </td>
+                    <td>
+                        @* <a href="@Url.Action("Edit", "Usuarios", new { id = usuario.Id })" class="btn btn-warning btn-sm">Editar</a>
                             <a href="@Url.Action("Delete", "Usuarios", new { id = usuario.Id })" class="btn btn-danger btn-sm">Eliminar</a> *@
-                        </td>
-                    </tr>
-                }
+                    </td>
+                </tr>
+            }
             </tbody>
         </table>
+    </div>
+    <hr/>
+    <div class="align-content-lg-start align-content-md-center mt-2">
+        <a class="btn btn-outline-success" asp-controller="Usuarios" asp-action="Registrar">Crear nuevo registro</a>
     </div>
 </div>
 

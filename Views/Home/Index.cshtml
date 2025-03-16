@@ -1,8 +1,41 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Dashboard";
 }
+<style>
+    .stat-card {
+        transition: transform 0.3s ease-in-out;
+    }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    .stat-card:hover {
+        transform: scale(1.05);
+    }
+</style>
+
+<div class="container-fluid py-3">
+    <div class="row text-center">
+        <div class="col-sm-12 col-md-4 mb-2">
+            <div class="card shadow-sm p-2 bg-primary text-white rounded stat-card">
+                <h6 class="fw-bold">Pedidos Recibidos</h6>
+                <h3 class="fw-bold">12</h3>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4 mb-2">
+            <div class="card shadow-sm p-2 bg-warning text-dark rounded stat-card">
+                <h6 class="fw-bold">Pedidos Sin Procesar</h6>
+                <h3 class="fw-bold">4</h3>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4 mb-2">
+            <div class="card shadow-sm p-2 bg-success text-white rounded stat-card">
+                <h6 class="fw-bold">Pedidos Enviados a Cosechar</h6>
+                <h3 class="fw-bold">6</h3>
+            </div>
+        </div>
+    </div>
+    <hr />
 </div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial"/>
+}

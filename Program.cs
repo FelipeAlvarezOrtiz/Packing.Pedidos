@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Packing.Pedidos.Core;
 using Packing.Pedidos.Data;
+using Packing.Pedidos.Infraestructura;
+using Packing.Pedidos.Interfaces;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -84,6 +86,8 @@ builder.Services.AddRateLimiter(options =>
 
     options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
 });
+
+builder.Services.AddScoped<IMailer, Mailer>();
 
 var app = builder.Build();
 

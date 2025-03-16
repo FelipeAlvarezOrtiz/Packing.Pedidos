@@ -1,9 +1,9 @@
 ﻿const hamBurger = document.querySelector(".toggle-btn");
 const sidebar = document.querySelector("#sidebar");
 
-if (sidebar) {
-    sidebar.classList.toggle("expand");
-}
+//if (sidebar) {
+//    sidebar.classList.toggle("expand");
+//}
 
 if (hamBurger && sidebar) {
     hamBurger.addEventListener("click", function () {

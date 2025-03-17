@@ -32,6 +32,7 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Formato> Formatos { get; set; }
     public DbSet<Grupo> Grupos { get; set; }
     public DbSet<Presentacion> Presentaciones { get; set; }
+    public DbSet<Producto> Productos { get; set; }
 
     public DbSet<DetallePedido> DetallesPedido { get; set; }
     public DbSet<Pedido> Pedidos { get; set; }
